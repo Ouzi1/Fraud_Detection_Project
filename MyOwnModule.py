@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
@@ -21,6 +22,11 @@ if importlib.util.find_spec("sklearn.metrics"):
         # Fallback: define manually if sklearn < 1.6
         def root_mean_squared_error(y_true, y_pred):
             return np.sqrt(mean_squared_error(y_true, y_pred))
+
+#Function to check if a file exists in the working directory
+def file_exists(filename):
+    return os.path.exists(filename)
+
 
 #%% 1. Def Check inConsistency 
 def check_inconsistency(data, Categorical_Variables, Ordinal_Variables, dependant_name = None):
